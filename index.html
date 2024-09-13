@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Testimonial Slider</title>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+
+  <!-- CSS -->
+  <style>
+    /* Google Fonts - Poppins */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .container {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .testimonial1 {
+      position: relative;
+      max-width: 900px;
+      width: 100%;
+      padding: 50px 0;
+      overflow: hidden;
+    }
+
+    .testimonial-section {
+      width: 100%;
+      height: 100vh;
+      background: rgb(17, 24, 39);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .testimonial-section .one,
+    .testimonial-section .two {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.8;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .testimonial-section .one {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgb(18, 47, 101) 0%, rgb(18, 47, 101) 100%);
+      left: -25%;
+      top: -10px;
+      animation-delay: 1s;
+    }
+
+    .testimonial-section .two {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgb(18, 47, 101) 0%, rgb(18, 47, 101) 100%);
+      top: 60%;
+      right: -25%;
+      animation-delay: 1s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(50px, 50px);
+      }
+
+      50% {
+        transform: translate(-20px, -20px);
+      }
+
+      100% {
+        transform: translate(50px, 50px);
+      }
+    }
+
+    .testimonial {
+      text-align: center;
+      max-width: 800px;
+      height: auto;
+      padding: 20px;
+      margin: 0.5rem;
+      background: #111;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial p {
+      position: relative;
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: rgba(128, 128, 128, 0.8);
+      margin: 0;
+      padding: 0 30px;
+      z-index: 1;
+    }
+
+    .testimonial p strong {
+      color: #ccc;
+    }
+
+    .testimonial .author {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .testimonial .author img {
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      outline: 3px solid #fff;
+      margin-bottom: 10px;
+      transition: transform 6s ease-in-out;
+      animation: zoomInOut 6s ease-in-out infinite;
+    }
+
+    .name {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: rgba(128, 128, 128, 0.8);
+    }
+
+    .company {
+      color: #8a2be2;
+    }
+
+    .fa-quote-left {
+      color: #8a2be2;
+      margin-right: 10px;
+      font-size: 28px;
+    }
+
+    .fa-quote-right {
+      color: #8a2be2;
+      margin-left: 10px;
+      font-size: 28px;
+    }
+
+    @keyframes zoomInOut {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .testimonial1 .slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      row-gap: 30px;
+      height: 100%;
+      width: 100%;
+    }
+
+    .nav-btn {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      transform: translateY(30px);
+      background-color: rgba(0, 0, 0, 0.1);
+      transition: 0.2s;
+    }
+
+    .nav-btn:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-btn::after,
+    .nav-btn::before {
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .swiper-pagination-bullet {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: #8a2be2;
+    }
+
+   
+    .swiper-container:hover .swiper-slide {
+      transform: scale(1.05);
+    }
+
+    .swiper-container:hover {
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 768px) {
+      .slide p {
+        padding: 0 20px;
+      }
+
+      .nav-btn {
+        display: none;
+      }
+    }
+  </style>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <div class="testimonial-section">
+    <div class="one"></div>
+    <div class="two"></div>
+
+  <section class="container">
+    <div class="testimonial1 swiper-container mySwiper">
+      <div class="testi-content swiper-wrapper">
+        <div class="slide swiper-slide">
+          <div class="testimonial">
+            <p><i class="fas fa-quote-left"></i>
+              Discovering Product Video Examples was a <strong>game-changer</strong> for our product launch!
+              The platform saved us
+              <strong>countless hours</strong> searching for inspiring videos. With their incredible library,
+              we found the perfect
+              inspiration for our Product Hunt launch in no time. Product Video Examples is truly the
+              <strong>ultimate site</strong> for creative SaaS video inspiration!
+              <i class="fas fa-quote-right"></i>
+            </p>
+            <div class="author">
+              <img src="./images/img2.jpg" alt="Erwin">
+              <div>
+                <div class="name">Erwin, CEO of</div>
+                <div class="company"><i class="fa-brands fa-slack"></i> Tailscan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide swiper-slide">
+          <div class="testimonial">
+            <p><i class="fas fa-quote-left"></i>
+              Discovering Product Video Examples was a <strong>game-changer</strong> for our product launch!
+              The platform saved us
+              <strong>countless hours</strong> searching for inspiring videos. With their incredible library,
+              we found the perfect
+              inspiration for our Product Hunt launch in no time. Product Video Examples is truly the
+              <strong>ultimate site</strong> for creative SaaS video inspiration!
+              <i class="fas fa-quote-right"></i>
+            </p>
+            <div class="author">
+              <img src="./images/img2.jpg" alt="Michael">
+              <div>
+                <div class="name">Michael, Founder of</div>
+                <div class="company"><i class="fa-brands fa-dropbox"></i> DropConnect</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide swiper-slide">
+          <div class="testimonial">
+            <p><i class="fas fa-quote-left"></i>
+              Discovering Product Video Examples was a <strong>game-changer</strong> for our product launch!
+              The platform saved us
+              <strong>countless hours</strong> searching for inspiring videos. With their incredible library,
+              we found the perfect
+              inspiration for our Product Hunt launch in no time. Product Video Examples is truly the
+              <strong>ultimate site</strong> for creative SaaS video inspiration!
+              <i class="fas fa-quote-right"></i>
+            </p>
+            <div class="author">
+              <img src="./images/img2.jpg" alt="Lisa">
+              <div>
+                <div class="name">Lisa, Marketing Head of</div>
+                <div class="company"><i class="fa-brands fa-trello"></i> TrelloWorks</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- Navigation buttons -->
+      <div class="swiper-button-next nav-btn"></div>
+      <div class="swiper-button-prev nav-btn"></div>
+      <!-- Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="js/swiper-bundle.min.js"></script>
+
+  <!-- JavaScript -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      grabCursor: true,
+      loop: true,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false, 
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
+    // Pause autoplay on hover
+    document.querySelector('.swiper-container').addEventListener('mouseenter', function() {
+      swiper.autoplay.stop();
+    });
+    document.querySelector('.swiper-container').addEventListener('mouseleave', function() {
+      swiper.autoplay.start();
+    });
+  </script>
+</body>
+
+</html>
